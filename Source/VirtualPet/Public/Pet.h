@@ -58,10 +58,15 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	FTimerHandle BasicNeedsHandle;
+
 public:	
 	// Called when the pet is born
 	UFUNCTION(BlueprintCallable)
 	void OnBirth();
+
+	UFUNCTION()
+	void BasicNeedsTimer();
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

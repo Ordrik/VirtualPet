@@ -17,6 +17,8 @@ void APet::BeginPlay()
 	Super::BeginPlay();
 
 	OnBirth();
+
+	GetWorld()->GetTimerManager().SetTimer(BasicNeedsHandle, this, &APet::BasicNeedsTimer, 1.0f, true, 1.0f);
 	
 }
 
@@ -40,6 +42,14 @@ void APet::OnBirth()
 	ThirstMultiplier = FMath::RandRange(0.1f, 2.0f);
 	HappinessMultiplier = FMath::RandRange(0.1f, 2.0f);
 	SanitationMultiplier = FMath::RandRange(0.1f, 2.0f);
+}
+
+void APet::BasicNeedsTimer()
+{
+	Hunger = Hunger - HungerMultiplier;
+	Thirst = Thirst - ThirstMultiplier;
+	Happiness = Happiness - HappinessMultiplier;
+	Sanitation = Sanitation - SanitationMultiplier;
 }
 
 // Called every frame
